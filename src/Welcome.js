@@ -31,18 +31,19 @@ const Welcomepage = () => {
       } catch (error) {
         setError("failed to fech userprofile");
         setLoading(false);
+      } finally {
+        const userData = localStorage.getItem("user");
+        if (userData) {
+          setUser(JSON.parse(userData.name));
+        }
       }
     };
     fetchUser();
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-700 to-rose-300 flex  justify-center items-center">
-      <div className="flex pb-96 pl-48">
-        <h1 className="flex justify-center text-2xl font-sans font-bold">
-          Welcome User {name}
-        </h1>
-      </div>
+    <div>
+      <h1>Welcome, {name ? name : "User"}!</h1>
     </div>
   );
 };

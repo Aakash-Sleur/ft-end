@@ -11,16 +11,23 @@ const Registerpage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://bck-end.vercel.app/api/auth", {
-        name,
-        email,
+      const response = await axios.post("https://bck-end.vercel.app/api/auth", {
+        name: name.trim(),
+        email: email.trim(),
         password,
       });
-      alert("Registered Successfully");
-      navigate("/welcome", { state: { name: res.data.user.name } });
+      if (response.data && response.data.success) {
+        alert("Registered Successfully");
+        navigate("/");
+      } else {
+        alert(response.data.message || "Registration failed.");
+      }
     } catch (error) {
-      console.log("doesn't save in register", error);
-      alert("doesn't save in register", error);
+      console.error("Registration error:", error);
+      alert(
+        error.response?.data?.message ||
+        "An error occurred during registration."
+      );
     }
   };
   return (

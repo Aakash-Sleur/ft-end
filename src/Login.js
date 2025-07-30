@@ -18,6 +18,7 @@ const Loginpage = () => {
       console.log("Token:", res.data.token); // check to token is send or not
 
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
       alert("Login Successfully");
       navigate("/welcome", { state: { name: res.data.user.name } });
     } catch (error) {
