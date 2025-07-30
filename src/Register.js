@@ -9,6 +9,7 @@ const Registerpage = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       await axios.post("https://bck-end.vercel.app/api/auth", {
         name,
@@ -16,7 +17,7 @@ const Registerpage = () => {
         password,
       });
       alert("Registered Successfully");
-      navigate("/");
+      navigate("/welcome", { state: { name: res.data.user.name } });
     } catch (error) {
       console.log("doesn't save in register", error);
       alert("doesn't save in register", error);
