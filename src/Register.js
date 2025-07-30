@@ -10,7 +10,7 @@ const Registerpage = () => {
 
   const handleSubmit = async (e) => {
     try {
-      await axios.post("http://localhost:5000/api/auth", {
+      await axios.post("https://bck-end.vercel.app/api/auth", {
         name,
         email,
         password,
