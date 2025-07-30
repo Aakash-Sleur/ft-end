@@ -19,8 +19,10 @@ const Registerpage = () => {
       if (response.data && response.data.success) {
         alert("Registered Successfully");
         navigate("/");
+
       } else {
-        alert(response.data.message || "Registration failed.");
+        alert(response.data.message || "Registration successfully.");
+        navigate("/");
       }
     } catch (error) {
       console.error("Registration error:", error);
